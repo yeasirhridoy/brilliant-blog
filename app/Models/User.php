@@ -6,6 +6,8 @@ namespace App\Models;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -36,11 +38,13 @@ class User extends Authenticatable implements FilamentUser
         return $this->can('view-admin', User::class);
     }
 
-    public function isAdmin(){
+    public function isAdmin(): bool
+    {
         return $this->role === self::ROLE_ADMIN;
     }
 
-    public function isEditor(){
+    public function isEditor(): bool
+    {
         return $this->role === self::ROLE_EDITOR;
     }
 
@@ -86,7 +90,7 @@ class User extends Authenticatable implements FilamentUser
         'profile_photo_url',
     ];
 
-    public function likes()
+    public function likes(): BelongsToMany
     {
         return $this->belongsToMany(Post::class, 'post_like')->withTimestamps();
     }
@@ -96,7 +100,7 @@ class User extends Authenticatable implements FilamentUser
         return $this->likes()->where('post_id', $post->id)->exists();
     }
 
-    public function comments()
+    public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
     }
