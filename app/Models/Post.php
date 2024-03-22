@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Spatie\Sitemap\Contracts\Sitemapable;
+use Spatie\Sitemap\Tags\Url;
 
-class Post extends Model
+class Post extends Model implements Sitemapable
 {
     use HasFactory;
     use SoftDeletes;
@@ -96,5 +98,14 @@ class Post extends Model
     {
 
         return Storage::url($this->image);
+    }
+
+    public function toSitemapTag(): Url|string|array
+    {
+        return Url::create(route('posts.show', $this))
+            ->setLastModificationDate(Carbon::create($this->updated_at))
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_YEARLY)
+            ->addImage($this->getThumbnailUrl())
+            ->setPriority(0.1);
     }
 }
