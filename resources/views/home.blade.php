@@ -1,9 +1,8 @@
 <x-app-layout title="Home Page">
     @section('hero')
-        <div class="w-full py-32 text-center">
+        <div class="w-full py-28 text-center">
             <h1 class="text-2xl font-bold text-center text-gray-700 md:text-3xl lg:text-5xl">
-                {{ __('home.hero.title') }} <span class="text-yellow-500">&lt;YELO&gt;</span> <span class="text-gray-900">
-                    News</span>
+                {{ __('home.hero.title') }} <span class="text-yellow-500">Hridoy's </span>
             </h1>
             <p class="mt-1 text-lg text-gray-500">{{ __('home.hero.desc') }}</p>
             <a class="inline-block px-3 py-2 mt-5 text-lg text-white bg-gray-800 rounded" href="{{ route('posts.index') }}">

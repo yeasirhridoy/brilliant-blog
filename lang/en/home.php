@@ -9,7 +9,7 @@ return [
 
     'hero' => [
         'title' => 'Welcome to',
-        'desc' => 'Best Blog in the universe',
-        'cta' => 'Start Reading'
+        'desc' => 'Discover a wide range of topics with our concise, clear articles. Quality information made simple and accessible for all.',
+        'cta' => 'Browse Posts'
     ]
 ];

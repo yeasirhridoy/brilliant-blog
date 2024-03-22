@@ -103,9 +103,9 @@ return [
             'name' => 'English',
             'icon' => 'us'
         ],
-        'fr' => [
-            'name' => 'French',
-            'icon' => 'fr'
+        'bn' => [
+            'name' => 'Bengali',
+            'icon' => 'bd'
         ],
     ],
 

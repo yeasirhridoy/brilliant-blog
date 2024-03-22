@@ -17,9 +17,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomeController::class)->name('home');
 
-Route::get('/blog', [PostController::class, 'index'])->name('posts.index');
+Route::get('/post', [PostController::class, 'index'])->name('posts.index');
 
-Route::get('/blog/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/post/{post:slug}', [PostController::class, 'show'])->name('posts.show');
+
+Route::get('privacy-policy', function () {
+    return view('policy');
+})->name('privacy-policy');
+
+Route::get('terms-of-service', function () {
+    return view('terms');
+})->name('terms-of-service');
 
 
 Route::get('/language/{locale}', function ($locale) {
