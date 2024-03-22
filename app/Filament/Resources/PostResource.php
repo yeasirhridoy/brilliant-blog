@@ -40,13 +40,8 @@ class PostResource extends Resource
                         TextInput::make('title')
                             ->live()
                             ->required()->minLength(1)->maxLength(150)
-                            ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
-                                if ($operation === 'edit') {
-                                    return;
-                                }
-
-                                $set('slug', Str::slug($state));
-                            }),
+                            ->live(onBlur: true)->maxLength(255)
+                            ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                         TextInput::make('slug')->required()->minLength(1)->unique(ignoreRecord: true)->maxLength(150),
                         RichEditor::make('body')
                             ->required()

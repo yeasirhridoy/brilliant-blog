@@ -27,15 +27,9 @@ class CategoryResource extends Resource
         return $form
             ->schema([
                 TextInput::make('title')
-                    ->live()
+                    ->live(onBlur: true)
                     ->required()->minLength(1)->maxLength(150)
-                    ->afterStateUpdated(function (string $operation, $state, Forms\Set $set) {
-                        if ($operation === 'edit') {
-                            return;
-                        }
-
-                        $set('slug', Str::slug($state));
-                    }),
+                    ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                 TextInput::make('slug')->required()->minLength(1)->unique(ignoreRecord: true)->maxLength(150),
                 TextInput::make('text_color')->nullable(),
                 TextInput::make('bg_color')->nullable(),
