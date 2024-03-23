@@ -43,13 +43,13 @@
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
                                     'terms_of_service' =>
                                         '<a target="_blank" href="' .
-                                        route('terms.show') .
+                                        route('terms-of-service') .
                                         '" class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
                                         __('Terms of Service') .
                                         '</a>',
                                     'privacy_policy' =>
                                         '<a target="_blank" href="' .
-                                        route('policy.show') .
+                                        route('privacy-policy') .
                                         '" class="text-sm text-gray-600 underline rounded-md hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">' .
                                         __('Privacy Policy') .
                                         '</a>',
