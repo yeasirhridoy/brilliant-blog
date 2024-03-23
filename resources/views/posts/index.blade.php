@@ -1,4 +1,4 @@
-<x-app-layout title="Blog">
+<x-app-layout title="Posts">
     <div class="grid w-full grid-cols-4 gap-10">
         <div class="col-span-4 md:col-span-3">
             <livewire:post-list />
