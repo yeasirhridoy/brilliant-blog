@@ -26,6 +26,8 @@
         gtag('config', 'G-0MG7KWNVC1');
     </script>
 
+    @yield('meta')
+
     <!-- Styles -->
     @livewireStyles
 </head>
