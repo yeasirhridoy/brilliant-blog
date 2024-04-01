@@ -1,5 +1,5 @@
 @props(['title'])
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
@@ -10,8 +10,12 @@
     <title> {{ isset($title) ? $title . ' - ' : '' }}{{ config('app.name', '') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    {{--    <link rel="preconnect" href="https://fonts.bunny.net">--}}
+    {{--    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />--}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
+          rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -20,7 +24,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-0MG7KWNVC1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-0MG7KWNVC1');
@@ -33,20 +41,20 @@
 </head>
 
 <body class="font-sans antialiased">
-    <x-banner />
+<x-banner/>
 
-    @include('layouts.partials.header')
+@include('layouts.partials.header')
 
-    @yield('hero')
+@yield('hero')
 
-    <main class="container flex flex-grow px-5 mx-auto">
-        {{ $slot }}
-    </main>
+<main class="container flex flex-grow px-5 mx-auto">
+    {{ $slot }}
+</main>
 
-    @include('layouts.partials.footer')
+@include('layouts.partials.footer')
 
-    @stack('modals')
-    @livewireScripts
+@stack('modals')
+@livewireScripts
 </body>
 
 </html>
