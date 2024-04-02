@@ -1,8 +1,8 @@
 <x-app-layout :title="$post->title">
     @section('meta')
-        <meta name="description" content="{{ $post->excerpt }}">
+        <meta name="description" content="{{ $post->getExcerpt() }}">
         <meta property="og:title" content="{{ $post->title }}">
-        <meta property="og:description" content="{{ $post->excerpt }}">
+        <meta property="og:description" content="{{ $post->getExcerpt() }}">
         <meta property="og:image" content="{{ $post->getThumbnailUrl() }}">
         <meta property="og:url" content="{{ route('posts.show', $post) }}">
         <meta property="og:type" content="article">
@@ -13,7 +13,7 @@
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:creator" content="@yahrdy">
         <meta name="twitter:title" content="{{ $post->title }}">
-        <meta name="twitter:description" content="{{ $post->excerpt }}">
+        <meta name="twitter:description" content="{{ $post->getExcerpt() }}">
         <meta name="twitter:image" content="{{ $post->getThumbnailUrl() }}">
     @endsection
 
