@@ -1,4 +1,7 @@
 <x-app-layout title="Privacy Policy">
+    @section('meta')
+        <meta name="description" content="Privacy Policy for Hridoy's Blog Website">
+    @endsection
     <div class="pt-4 min-h-screen max-w-4xl mx-auto">
         <article>
             <h1 class="text-4xl">Privacy Policy for Hridoy's Blog Website</h1>
