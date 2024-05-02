@@ -1,7 +1,4 @@
 <div class="px-3 py-6 lg:px-7">
-    <h1>
-        Browse Posts on {{ config('app.name') }}
-    </h1>
     <div class="flex items-center justify-between border-b border-gray-100">
         <div class="text-gray-600">
             @if ($this->activeCategory || $search)
