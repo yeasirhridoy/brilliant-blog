@@ -1,5 +1,10 @@
 <x-app-layout title="Forgot Password">
     <x-authentication-card>
+
+        <x-slot name="title">
+            {{ __("Recover your password") }}
+        </x-slot>
+
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
