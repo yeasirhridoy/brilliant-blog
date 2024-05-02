@@ -94,10 +94,10 @@ class Post extends Model implements Sitemapable
         return ($mins < 1) ? 1 : $mins;
     }
 
-    public function getThumbnailUrl(): string
+    public function getThumbnailUrl(): ?string
     {
 
-        return Storage::url($this->image);
+        return $this->image ? Storage::url($this->image) : null;
     }
 
     public function toSitemapTag(): Url|string|array

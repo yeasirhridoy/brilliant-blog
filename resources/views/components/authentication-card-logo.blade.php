@@ -1,5 +1,5 @@
 <a href="/">
     <div class="text-gray-800 font-semibold">
-        <span class="text-yellow-500 text-3xl">Hridoy's</span>
+        <img alt="Hridoy's site logo" src="logo.webp" class="w-40">
     </div>
 </a>

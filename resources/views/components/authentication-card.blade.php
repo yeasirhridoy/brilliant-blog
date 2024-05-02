@@ -1,4 +1,7 @@
 <div class="w-full min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
+    <h1 class="text-2xl md:text-4xl mb-8">
+        {{ $title }}
+    </h1>
     <div>
         {{ $logo }}
     </div>

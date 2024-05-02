@@ -1,5 +1,10 @@
 <x-app-layout title="Register">
+
     <x-authentication-card>
+        <x-slot name="title">
+            {{ __("Register to Hridoy's") }}
+        </x-slot>
+
         <x-slot name="logo">
             <x-authentication-card-logo />
         </x-slot>
