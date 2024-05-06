@@ -11,11 +11,11 @@
                 <x-posts.author :author="$post->author" size="xs" />
                 <span class="text-xs text-gray-500">. {{ $post->published_at->diffForHumans() }}</span>
             </div>
-            <h1 class="text-xl font-bold text-gray-900">
+            <h2 class="text-xl font-bold text-gray-900">
                 <a wire:navigate href="{{ route('posts.show', $post->slug) }}">
                     {{ $post->title }}
                 </a>
-            </h1>
+            </h2>
 
             <p class="mt-2 text-base font-light text-gray-700">
                 {{ $post->getExcerpt() }}
