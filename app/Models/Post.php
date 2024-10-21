@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -32,6 +33,11 @@ class Post extends Model implements Sitemapable
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    public function visitors(): MorphMany
+    {
+        return $this->morphMany(Visitor::class, 'visitable');
+    }
 
     public function author(): BelongsTo
     {
@@ -77,7 +83,7 @@ class Post extends Model implements Sitemapable
             ->orderBy("likes_count", 'desc');
     }
 
-    public function scopeSearch($query, string $search = '')
+    public function scopeSearch($query, string $search = ''): void
     {
         $query->where('title', 'like', "%{$search}%");
     }

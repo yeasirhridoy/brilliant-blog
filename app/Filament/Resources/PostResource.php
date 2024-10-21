@@ -3,7 +3,6 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Filament\Resources\PostResource\RelationManagers\CommentsRelationManager;
 use App\Models\Post;
 use Filament\Forms;
@@ -32,6 +31,7 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     protected static ?int $navigationSort = 2;
+
     public static function form(Form $form): Form
     {
         return $form
@@ -42,11 +42,11 @@ class PostResource extends Resource
                             ->live()
                             ->required()->minLength(1)->maxLength(150)
                             ->live(onBlur: true)->maxLength(255)
-                            ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                         TextInput::make('slug')->required()->minLength(1)->unique(ignoreRecord: true)->maxLength(150),
                         RichEditor::make('body')
                             ->required()
-                            ->fileAttachmentsDirectory('posts/images')->columnSpanFull()
+                            ->fileAttachmentsDirectory('posts/images')->columnSpanFull(),
                     ]
                 )->columns(2),
                 Section::make('Meta')->schema(
@@ -74,10 +74,10 @@ class PostResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('image'),
-                TextColumn::make('title')->sortable()->searchable(),
-                TextColumn::make('slug')->sortable()->searchable(),
-                TextColumn::make('author.name')->sortable()->searchable(),
-                TextColumn::make('published_at')->date('Y-m-d')->sortable()->searchable(),
+                TextColumn::make('title')->sortable()->searchable()->wrap(),
+                TextColumn::make('author.name')->sortable()->searchable()->wrap(),
+                TextColumn::make('published_at')->since()->sortable(),
+                TextColumn::make('visitors_count')->counts('visitors')->sortable()->label('Visitors')->badge(),
                 CheckboxColumn::make('featured'),
             ])
             ->filters([
@@ -98,7 +98,7 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            CommentsRelationManager::class
+            CommentsRelationManager::class,
         ];
     }
 
