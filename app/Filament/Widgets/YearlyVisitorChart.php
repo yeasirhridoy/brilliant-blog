@@ -7,9 +7,9 @@ use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
-class VisitorsPerMonthChart extends ChartWidget
+class YearlyVisitorChart extends ChartWidget
 {
-    protected static ?string $heading = 'Monthly Visitors';
+    protected static ?string $heading = 'Yearly Visitors';
 
     protected int|string|array $columnSpan = 'full';
 
@@ -21,10 +21,10 @@ class VisitorsPerMonthChart extends ChartWidget
     {
         $data = Trend::model(Visitor::class)
             ->between(
-                start: now()->startOfMonth(),
-                end: now()->endOfMonth(),
+                start: now()->startOfYear(),
+                end: now()->endOfYear(),
             )
-            ->perDay()
+            ->perMonth()
             ->dateColumn('created_at')
             ->count();
 
