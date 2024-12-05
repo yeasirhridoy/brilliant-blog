@@ -80,6 +80,7 @@ class PostResource extends Resource
                 TextColumn::make('visitors_count')->counts('visitors')->sortable()->label('Visitors')->badge(),
                 CheckboxColumn::make('featured'),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
             ])
