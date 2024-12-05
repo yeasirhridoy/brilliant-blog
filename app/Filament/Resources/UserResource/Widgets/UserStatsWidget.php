@@ -17,7 +17,7 @@ class UserStatsWidget extends BaseWidget
             Stat::make('Total Editors', User::query()->where('role', User::ROLE_EDITOR)->count()),
             Stat::make('Today\'s Visitors', Visitor::query()->whereDate('created_at', now())->count()),
             Stat::make('Last 30 Days Visitors', Visitor::query()->whereDate('created_at', '>', now()->subDays(30))->count()),
-            Stat::make('Total Visitors', Visitor::query()->count()),
+            Stat::make('Total Visitors', Visitor::query()->count())->description('Unique visitors: '.Visitor::query()->distinct('ip_address')->count()),
         ];
     }
 }
