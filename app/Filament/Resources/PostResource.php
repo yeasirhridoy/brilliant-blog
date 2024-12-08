@@ -39,7 +39,6 @@ class PostResource extends Resource
                 Section::make('Main Content')->schema(
                     [
                         TextInput::make('title')
-                            ->live()
                             ->required()->minLength(1)->maxLength(150)
                             ->live(onBlur: true)->maxLength(255)
                             ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),

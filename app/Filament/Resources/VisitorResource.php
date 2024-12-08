@@ -24,17 +24,21 @@ class VisitorResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('page_title')
+                    ->wrap()
+                    ->limit()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('page_url')
                     ->numeric()
+                    ->wrap()
+                    ->limit()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ip_address')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->since()
+                    ->sortable(),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
